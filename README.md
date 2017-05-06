@@ -10,6 +10,9 @@ m_ChunkChars = new char[newBlockLength];
 
 This, of course, defeats the purpose of the whole design of StringBuilder as described here:
 
+(https://referencesource.microsoft.com/#mscorlib/system/text/stringbuilder.cs)
+
+
 // We want to keep chunk arrays out of large object heap (< 85K bytes ~ 40K chars) to be sure.
 
 // Making the maximum chunk size big means less allocation code called, but also more waste
