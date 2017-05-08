@@ -1,5 +1,5 @@
 # Large Object Heap Fix For .NET StringBuilder
-## The suggested fix prevents .NET StringBuilder from allocating on Large Object Heap.
+## The suggested fix prevents .NET StringBuilder from allocating on the Large Object Heap.
 
 In the current implementation of StringBuilder, *AppendHelper* calls *ExpandByABlock(int minBlockCharCount)* which will obviously allocate on the Large Object Heap when *minBlockCharCount* is large:  
 
