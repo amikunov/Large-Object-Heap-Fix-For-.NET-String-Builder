@@ -29,4 +29,4 @@ internal const int MaxChunkSize = 8000;
         
 To fix this issue, we simply call *AppendHelper* on smaller chunks which will result in allocations on the Small Object Heap ONLY!
 
-*Note that in order to reduce performance impact we could use bigger chunks for allocation, say three times MaxChunkSize.* 
+*Note that in order to reduce performance impact we could use bigger chunks for allocation, say five times MaxChunkSize.* 
