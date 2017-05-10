@@ -58,4 +58,6 @@ private void AppendHelper(string value) {
 }
 ```
 
-*Note that in order to reduce performance impact we could use bigger chunks for allocation, say five times MaxChunkSize.* 
+## Performance
+
+Currently, we check against *MaxChunkSize* and then call *Append(...)* at least *(value.Length / MaxChunkSize)* times. In order to reduce performance impact we can use bigger chunks for allocation, say five times *MaxChunkSize.*
