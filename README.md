@@ -3,7 +3,7 @@
 
 In the current implementation of .NET 4.5 or higher each time we call *StringBuilder's* *Append(string value)*, it internally decides whether to use an existing buffer *m_ChunkChars* or expand itself by creating another instance of *StringBuilder.*
 
-If so *AppendHelper* method calls *ExpandByABlock(int minBlockCharCount)* which will obviously allocate on the Large Object Heap if *minBlockCharCount* is large:  
+If so, *AppendHelper* method calls *ExpandByABlock(int minBlockCharCount)* which will obviously allocate on the Large Object Heap if *minBlockCharCount* is large:  
 
 
 ```
