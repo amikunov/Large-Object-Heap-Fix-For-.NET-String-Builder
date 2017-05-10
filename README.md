@@ -41,9 +41,7 @@ private void AppendHelper(string value) {
             }
             else
             {
-                //
                 // possibly large allocation, so do it in smaller chunks
-                //
                 int numOfChunks = value.Length / MaxChunkSize;
                 int remainder = value.Length % MaxChunkSize;
                 for (int i = 0; i < numOfChunks; ++i)
