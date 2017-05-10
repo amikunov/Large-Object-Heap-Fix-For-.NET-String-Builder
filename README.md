@@ -27,6 +27,37 @@ internal const int MaxChunkSize = 8000;
 ```
         
         
-To fix this issue, we simply call *AppendHelper* on smaller chunks which will result in allocations on the Small Object Heap ONLY!
+To fix this issue, we simply call *AppendHelper* on smaller chunks which will result in allocations on the Small Object Heap ONLY:
+
+```
+private void AppendHelper(string value) {
+    unsafe {
+        fixed (char* valueChars = value)
+        {
+            if (value.Length <= MaxChunkSize)
+            {
+                // regular case
+                Append(valueChars, value.Length);
+            }
+            else
+            {
+                //
+                // possibly large allocation, so do it in smaller chunks
+                //
+                int numOfChunks = value.Length / MaxChunkSize;
+                int remainder = value.Length % MaxChunkSize;
+                for (int i = 0; i < numOfChunks; ++i)
+                {
+                    Append(valueChars + (i * MaxChunkSize), MaxChunkSize);
+                }
+                if (remainder > 0)
+                {
+                    Append(valueChars + value.Length - remainder, remainder);
+                }
+            }
+        }
+    }
+}
+```
 
 *Note that in order to reduce performance impact we could use bigger chunks for allocation, say five times MaxChunkSize.* 
